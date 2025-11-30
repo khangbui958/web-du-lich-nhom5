@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thanh Toán Đặt Tour</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-top">
+            <div class="logo">
+                <img src="images/lg5.jpg" alt="Nhom5Traver Logo">
+                <span>Nhom5Traver</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" id="home-link" class="active">Trang chủ</a></li> 
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="tour.html">Tour</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions not-logged-in">
+                <a href="login.html" class="btn-secondary">Đăng nhập</a>
+                <a href="register.html" class="btn-primary">Đăng ký</a>
+            </div>
+            
+            <div class="header-actions logged-in-header" style="display: none;">
+                <div class="user-profile user-menu-toggle">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <span class="username" id="display-username"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="user-dropdown-menu" style="display: none;"> 
+            <ul>
+                <li><a href="account-setting.html"><i class="fas fa-cog"></i> Quản lý tài khoản</a></li>
+                <li><a href="tour-dachon.html"><i class="fas fa-suitcase"></i> Quản lý tour đã chọn</a></li>
+                <li><a href="thanhtoan.html"><i class="fas fa-credit-card"></i> Thanh toán</a></li> 
+                <li class="separator"></li>
+                <li><a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <div class="container" id="checkout-container"> 
+        <h1>Trang Thanh Toán Đặt Tour</h1>
+        
+        <div class="order-summary">
+            <h2>3. Tóm Tắt Đơn Hàng Của Bạn</h2>
+            
+            <p><strong>Tên Tour:</strong> <span id="checkout-tour-name">Đang tải...</span></p>
+            <p><strong>Ngày Khởi hành:</strong> <span id="checkout-tour-date">Đang tải...</span></p>
+            <p><strong>Số lượng Khách:</strong> <span id="checkout-tour-quantity">Đang tải...</span></p>
+            
+            <ul>
+                <li>Giá Tour cơ bản (x1): <span id="checkout-tour-price-unit">Đang tải...</span></li>
+                <li>Mã Giảm Giá: <span id="giam_gia_hien_thi">0 VNĐ</span></li>
+            </ul>
+
+            <h3>Tổng Cộng Cần Thanh Toán: <span id="checkout-total-price">Đang tải...</span></h3>
+        </div>
+        
+        <hr>
+        
+        <div class="checkout-form">
+            <form action="/submit_payment" method="POST" id="checkout-form">
+                
+                <h2>1. Thông Tin Liên Hệ Khách Hàng</h2>
+                <p>Thông tin tour được đặt bởi:</p>
+                <ul>
+                    <li><strong>Người liên hệ:</strong> <span id="checkout-customer-name"></span></li>
+                    <li><strong>Email:</strong> <span id="checkout-customer-email"></span></li>
+                    <li><strong>SĐT:</strong> <span id="checkout-customer-phone"></span></li>
+                </ul>
+                <hr>
+                
+                <h2>2. Xác Nhận và Cập Nhật Thông Tin (Nếu cần)</h2>
+
+                <p>
+                    <label for="full-name">Họ và Tên (*):</label>
+                    <input type="text" id="full-name" name="full_name" required>
+                </p>
+                
+                <p>
+                    <label for="email">Email (*):</label>
+                    <input type="email" id="email" name="email" required>
+                </p>
+                
+                <p>
+                    <label for="phone">Số Điện Thoại (*):</label>
+                    <input type="text" id="phone" name="phone" required>
+                </p>
+                
+                <p>
+                    <label for="address">Địa chỉ Nhận hóa đơn/Liên hệ:</label>
+                    <input type="text" id="address" name="address">
+                </p>
+                
+                <p>
+                    <label for="note">Ghi chú thêm (nếu có):</label>
+                    <textarea id="note" name="note" rows="4" cols="50"></textarea>
+                </p>
+                
+                <hr>
+
+                <h2>3. Chọn Phương Thức Thanh Toán</h2>
+
+                <div>
+                    <input type="radio" id="momo" name="payment_method" value="momo" required>
+                    <label for="momo">Thanh toán qua Ví điện tử MoMo</label>
+                </div>
+                
+                <div>
+                    <input type="radio" id="bank-transfer" name="payment_method" value="bank_transfer">
+                    <label for="bank-transfer">Chuyển khoản Ngân hàng (VCB, TCB...)</label>
+                </div>
+                
+                <div>
+                    <input type="radio" id="visa" name="payment_method" value="visa">
+                    <label for="visa">Thẻ Visa/Mastercard (Qua cổng thanh toán)</label>
+                </div>
+                
+                <hr>
+
+                <input type="hidden" name="tour_id" value="" id="tour_id_input">
+                <input type="hidden" name="total_amount" value="" id="total_amount_input">
+                <input type="hidden" name="departure_date" value="" id="departure_date_input">
+                <input type="hidden" name="customer_id" value="" id="customer_id_input">
+                
+                <button type="submit">HOÀN TẤT ĐẶT TOUR VÀ THANH TOÁN</button>
+            </form>
+        </div>
+        
+    </div>
+    
+    <br>
+    <br>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-col footer-info">
+                <div class="footer-logo">
+                    <img src="images/lg5.jpg" alt="Nhom5Traver Logo">
+                    <span>Nhom5Traver</span>
+                </div>
+                <p>Trevalo là website cung cấp dịch vụ Đặt phòng khách sạn - Tour - Xe du lịch - Vé máy bay và tất cả các hoạt động du lịch tại các điểm đến du lịch phổ biến nhất Việt Nam dành cho du khách.</p>
+            </div>
+            <div class="footer-col footer-contact">
+                <h3>TRỤ SỞ CHÍNH</h3>
+                <p>Tầng 4, Tòa nhà số 97 - 99 Láng Hạ, Đống Đa, Hà Nội (Tòa nhà Petrowaco)</p>
+                <p>0901191616</p>
+                <p>contact@nhom5.vn</p>
+                <p>Thứ 2 - Chủ nhật: 08:00 - 21:00</p>
+            </div>
+            <div class="footer-col">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul>
+                    <li><a href="index.html" class="home-link-footer">Trang chủ</a></li>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="tour.html">Tour</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>ĐỐI TÁC & LIÊN KẾT</h3>
+                <ul>
+                    <li><a href="#">Com bo đối tác hấp dẫn</a></li>
+                    <li><a href="#">Đối tác khách sạn</a></li>
+                    <li><a href="#">Liên kết bán hàng</a></li>
+                    <li><a href="#">Chương trình tích lũy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="auth.js"></script> 
+    <script src="thanhtoan.js"></script> </body>
+</html>

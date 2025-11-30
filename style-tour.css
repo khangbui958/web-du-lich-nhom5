@@ -1,0 +1,301 @@
+/* style-tour.css (Phiên bản Tối giản - Chỉ tập trung vào MAIN CONTENT) */
+
+/* --- GENERAL RESET & BASE STYLES --- */
+:root {
+    --primary-color: #ff6b6b; /* Đỏ san hô */
+    --secondary-color: #3f51b5; /* Xanh indigo */
+    --text-color: #333;
+    --light-gray: #f4f4f4;
+    --border-color: #ddd;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #ffffff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* --- MAIN CONTENT STYLES --- */
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.breadcrumb a {
+    color: var(--secondary-color);
+}
+
+/* Tour Header Banner */
+.tour-header-banner {
+    position: relative;
+    height: 250px;
+    margin-bottom: 40px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.tour-header-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.tour-header-banner h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 2.5rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    padding: 10px;
+}
+
+/* --- SEARCH & FILTER SECTION --- */
+.tour-search-filter {
+    background-color: var(--light-gray);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border-color);
+}
+
+.search-bar {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+}
+
+.search-bar button {
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+.search-bar button:hover {
+    background-color: #303f9f;
+}
+
+
+.filter-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.filter-options select {
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    min-width: 180px;
+}
+
+.btn-filter {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-filter:hover {
+    background-color: #e65a5a;
+}
+
+/* --- TOUR LISTING SECTION --- */
+.section-title {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.tour-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.tour-card {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tour-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.tour-card a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.tour-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tour-card h3 {
+    font-size: 1.25rem;
+    padding: 15px;
+    margin: 0;
+    color: var(--secondary-color);
+    min-height: 70px;
+    overflow: hidden;
+}
+
+.tour-info {
+    padding: 0 15px 15px;
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.tour-info p {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    color: #555;
+}
+
+.tour-info p i {
+    color: var(--primary-color);
+    margin-right: 8px;
+    width: 18px;
+    text-align: center;
+}
+
+.tour-info p span {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.tour-card .price {
+    display: block;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    text-align: right;
+    border-radius: 0 0 12px 12px;
+}
+
+/* --- MEDIA QUERIES for Responsiveness --- */
+@media (max-width: 992px) {
+    .tour-header-banner h2 {
+        font-size: 2rem;
+        width: 80%;
+    }
+
+    .tour-search-filter {
+        padding: 20px;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .filter-options {
+        justify-content: center;
+    }
+
+    .filter-options select {
+        flex-grow: 1;
+        min-width: unset;
+    }
+
+    .btn-filter {
+        flex-grow: 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .tour-header-banner {
+        height: 180px;
+    }
+
+    .tour-header-banner h2 {
+        font-size: 1.5rem;
+    }
+
+    .filter-options {
+        flex-direction: column;
+    }
+
+    .filter-options select, .btn-filter {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

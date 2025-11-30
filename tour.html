@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhom5Traver - Tour Du Lịch</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-top">
+            <div class="logo">
+                <img src="images/lg5.jpg" alt="Nhom5Traver Logo">
+                <span>Nhom5Traver</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" id="home-link" class="active">Trang chủ</a></li> 
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="tour.html">Tour</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions not-logged-in">
+                <a href="login.html" class="btn-secondary">Đăng nhập</a>
+                <a href="register.html" class="btn-primary">Đăng ký</a>
+            </div>
+            
+            <div class="header-actions logged-in-header" style="display: none;">
+                <div class="user-profile user-menu-toggle">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <span class="username" id="display-username"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="user-dropdown-menu" style="display: none;"> 
+            <ul>
+                <li><a href="account-setting.html"><i class="fas fa-cog"></i> Quản lý tài khoản</a></li>
+                <li><a href="tour-dachon.html"><i class="fas fa-suitcase"></i> Quản lý tour đã chọn</a></li>
+                <li><a href="thanhtoan.html"><i class="fas fa-credit-card"></i> Thanh toán</a></li>
+                <li class="separator"></li>
+                <li><a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+            </ul>
+        </div>
+
+    <main class="container">
+                <div class="breadcrumb" id="breadcrumb">
+            <a href="index.html" id="breadcrumb-home-link">Trang chủ</a> > Tour Du Lịch
+        </div>
+
+        <section class="tour-header-banner">
+            <img src="images/h1tour.jpg" alt="Thành phố Đà Nẵng">
+            <h2>TOUR DU LỊCH TRONG NƯỚC & QUỐC TẾ</h2>
+        </section>
+        
+        <section class="tour-search-filter">
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm tên tour, địa điểm...">
+                <button><i class="fas fa-search"></i> Tìm kiếm</button>
+            </div>
+            <div class="filter-options">
+                <select name="destination">
+                    <option value="">-- Chọn Địa điểm --</option>
+                    <option>Côn Đảo</option>
+                    <option>Phú Quốc</option>
+                    <option>Tây Ninh</option>
+                    <option>Đà Lạt</option>
+                    <option>Đà Nẵng</option>
+                    <option>Nha Trang</option>
+                </select>
+                <select name="duration">
+                    <option value="">-- Thời gian --</option>
+                    <option value="1d">1 Ngày</option> 
+                    <option value="2d1n">2 Ngày 1 Đêm</option>
+                    <option value="3d2n">3 Ngày 2 Đêm</option>
+                    <option value="4d3n">4 Ngày 3 Đêm</option>
+                </select>
+                <select name="price">
+                    <option value="">-- Mức giá --</option>
+                    <option value="under1m">Dưới 1,000,000 VND</option>
+                    <option value="1m-3m">1,000,000 - 3,000,000 VND</option>
+                    <option value="over3m">Trên 3,000,000 VND</option>
+                </select>
+                <button class="btn-filter"><i class="fas fa-filter"></i> Lọc</button>
+            </div>
+        </section>
+
+        <section class="attractive-tours">
+    <div class="container">
+        <h2 id="tour-count-title">✨ Khám phá **8** tour du lịch hấp dẫn nhất</h2>
+        <div class="tour-cards-grid">
+            
+            <div class="tour-card" data-duration="2d1n" data-price-range="1m-3m">
+                <a href="sections/tour-condao-tamlinh.html">
+                    <img src="images/samson.png" alt="Tour Tam Linh Côn Đảo">
+                    <h3>Tour Tam Linh Côn Đảo - 2N1Đ</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> <span>**Côn Đảo**</span></li>
+                        <li><span class="label">Thời gian:</span> <span>2 ngày 1 đêm</span></li>
+                        <li><span class="label">Khởi hành:</span> <span>Hàng ngày</span></li>
+                        <li><span class="label">Phương tiện:</span> <span>Tàu/Máy bay, Xe</span></li>
+                    </ul>
+                    <span class="price">1,400,000 VND</span>
+                </a>
+                <button class="btn-primary btn-book" data-tour-id="condao-tamlinh">Đặt ngay</button>
+            </div>
+            
+            <div class="tour-card" data-duration="3d2n" data-price-range="over3m">
+                <a href="sections/tour-phuquoc-baongoc.html">
+                    <img src="images/haiphong.jpg" alt="Tour Phú Quốc">
+                    <h3>Tour Phú Quốc - Thiên Đường Bảo Ngọc - 3N2Đ</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> <span>**Phú Quốc**</span></li>
+                        <li><span class="label">Thời gian:</span> <span>3 ngày 2 đêm</span></li>
+                        <li><span class="label">Khởi hành:</span> <span>Hàng tuần</span></li>
+                        <li><span class="label">Phương tiện:</span> <span>Máy bay, Xe</span></li>
+                    </ul>
+                    <span class="price">4,200,000 VND</span>
+                </a>
+                <button class="btn-primary btn-book" data-tour-id="phuquoc-baongoc">Đặt ngay</button>
+            </div>
+            
+            <div class="tour-card" data-duration="1d" data-price-range="under1m">
+                <a href="sections/tour-tayninh-chinhphuc.html">
+                    <img src="images/tayninh.png" alt="Tour Tây Ninh">
+                    <h3>Tây Ninh 1 Ngày - Chinh phục nóc nhà Đông Nam Bộ</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> <span>**Tây Ninh**</span></li>
+                        <li><span class="label">Thời gian:</span> <span>1 ngày</span></li>
+                        <li><span class="label">Khởi hành:</span> <span>Thứ 7, Chủ nhật</span></li>
+                        <li><span class="label">Phương tiện:</span> <span>Xe ô tô</span></li>
+                    </ul>
+                    <span class="price">990,000 VND</span>
+                </a>
+                <button class="btn-primary btn-book" data-tour-id="tayninh-chinhphuc">Đặt ngay</button>
+            </div>
+            
+            <div class="tour-card" data-duration="4d3n" data-price-range="">
+                <a href="sections/tour-khachdoan-dalat.html">
+                    <img src="images/hanoi.png" alt="Tour Khách Đoàn Đà Lạt">
+                    <h3>Tour Khách Đoàn Đà Lạt - 4N3Đ</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> <span>**Đà Lạt**</span></li>
+                        <li><span class="label">Thời gian:</span> <span>4 ngày 3 đêm</span></li>
+                        <li><span class="label">Khởi hành:</span> <span>Theo yêu cầu</span></li>
+                        <li><span class="label">Phương tiện:</span> <span>Xe khách, Máy bay</span></li>
+                    </ul>
+                    <span class="price">Liên hệ</span>
+                </a>
+                <button class="btn-primary btn-book" data-tour-id="khachdoan-dalat">Đặt ngay</button>
+            </div>
+
+            <div class="tour-card" data-duration="4d3n" data-price-range="over3m">
+                <a href="sections/tour-danang-thantai.html">
+                    <img src="images/tourhn1.png" alt="Tour Nha Trang Đà Nẵng">
+                    <h3>Tour khám phá Nha Trang - Đà Nẵng - 4N3Đ</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> <span>**Đà Nẵng**</span></li>
+                        <li><span class="label">Thời gian:</span> <span>4 ngày 3 đêm</span></li>
+                        <li><span class="label">Khởi hành:</span> <span>Hàng tháng</span></li>
+                        <li><span class="label">Phương tiện:</span> <span>Máy bay, Xe</span></li>
+                    </ul>
+                    <span class="price">5,800,000 VND</span>
+                </a>
+                <button class="btn-primary btn-book" data-tour-id="danang-thantai">Đặt ngay</button>
+            </div>
+            
+            <div class="tour-card" data-duration="1d" data-price-range="1m-3m">
+                <a href="sections/tour-culaocam-haisan.html">
+                    <img src="images/toursamson1.png" alt="Tour Cù Lao Chàm">
+                    <h3>Tour Cù Lao Chàm + Ăn trưa Hải sản - 1 Ngày</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> <span>**Đà Nẵng**</span></li>
+                        <li><span class="label">Thời gian:</span> <span>1 ngày</span></li>
+                        <li><span class="label">Khởi hành:</span> <span>Hàng ngày</span></li>
+                        <li><span class="label">Phương tiện:</span> <span>Cano cao tốc</span></li>
+                    </ul>
+                    <span class="price">1,400,000 VND</span>
+                </a>
+                <button class="btn-primary btn-book" data-tour-id="culaocam-haisan">Đặt ngay</button>
+            </div>
+            
+            <div class="tour-card" data-duration="4d3n" data-price-range="over3m">
+                <a href="sections/tour-phuquoc-4n3d.html">
+                    <img src="images/tourphuquoc.jpg" alt="Tour Phú Quốc Đảo Ngọc">
+                    <h3>Tour du lịch Phú Quốc Đảo Ngọc - 4N3D</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> <span>**Phú Quốc**</span></li>
+                        <li><span class="label">Thời gian:</span> <span>4 ngày 3 đêm</span></li>
+                        <li><span class="label">Khởi hành:</span> <span>Hàng tuần</span></li>
+                        <li><span class="label">Phương tiện:</span> <span>Máy bay, Xe</span></li>
+                    </ul>
+                    <span class="price">5,100,000 VND</span>
+                </a>
+                <button class="btn-primary btn-book" data-tour-id="phuquoc-daongoc-4n3d">Đặt ngay</button>
+            </div>
+            
+            <div class="tour-card" data-duration="3d2n" data-price-range="over3m">
+                <a href="sections/tour-nhatrang-tomhum.html">
+                    <img src="images/samson.png" alt="Tour Côn Đảo - Đảo Tôm Hùm">
+                    <h3>Tour Hòn Tôm Hùm Nha Trang trọn gói - 3N2Đ</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> <span>**Nha Trang**</span></li>
+                        <li><span class="label">Thời gian:</span> <span>3 ngày 2 đêm</span></li>
+                        <li><span class="label">Khởi hành:</span> <span>Hàng ngày</span></li>
+                        <li><span class="label">Phương tiện:</span> <span>Xe, Cano</span></li>
+                    </ul>
+                    <span class="price">3,500,000 VND</span>
+                </a>
+                <button class="btn-primary btn-book" data-tour-id="nhatrang-tomhum">Đặt ngay</button>
+            </div>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-col footer-info">
+                <div class="footer-logo">
+                    <img src="images/lg5.jpg" alt="Nhom5Traver Logo">
+                    <span>Nhom5Traver</span>
+                </div>
+                <p>Trevalo là website cung cấp dịch vụ Đặt phòng khách sạn - Tour - Xe du lịch - Vé máy bay và tất cả các hoạt động du lịch tại các điểm đến du lịch phổ biến nhất Việt Nam dành cho du khách.</p>
+            </div>
+            <div class="footer-col footer-contact">
+                <h3>TRỤ SỞ CHÍNH</h3>
+                <p>Tầng 4, Tòa nhà số 97 - 99 Láng Hạ, Đống Đa, Hà Nội (Tòa nhà Petrowaco)</p>
+                <p>0901191616</p>
+                <p>contact@nhom5.vn</p>
+                <p>Thứ 2 - Chủ nhật: 08:00 - 21:00</p>
+            </div>
+            <div class="footer-col">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul>
+                    <li><a href="index-login.html" class="home-link-footer">Trang chủ</a></li>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="tour.html">Tour</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>ĐỐI TÁC & LIÊN KẾT</h3>
+                <ul>
+                    <li><a href="#">Com bo đối tác hấp dẫn</a></li>
+                    <li><a href="#">Đối tác khách sạn</a></li>
+                    <li><a href="#">Liên kết bán hàng</a></li>
+                    <li><a href="#">Chương trình tích lũy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="auth.js"></script> 
+    <script src="tour.js"></script> 
+</body>
+</html>

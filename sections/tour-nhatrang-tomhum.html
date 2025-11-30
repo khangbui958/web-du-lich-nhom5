@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Tiết Tour | Dinh Bà - Đảo Tôm Hùm Nha Trang</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-top">
+            <div class="logo">
+                <img src="../images/lg5.jpg" alt="Nhom5Traver Logo">
+                <span>Nhom5Traver</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../index.html" id="home-link" class="active">Trang chủ</a></li> 
+                    <li><a href="../gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="../tour.html">Tour</a></li>
+                    <li><a href="../lienhe.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions not-logged-in">
+                <a href="../login.html" class="btn-secondary">Đăng nhập</a>
+                <a href="../register.html" class="btn-primary">Đăng ký</a>
+            </div>
+            
+            <div class="header-actions logged-in-header" style="display: none;">
+                <div class="user-profile user-menu-toggle">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <span class="username" id="display-username"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="user-dropdown-menu" style="display: none;"> 
+            <ul>
+                <li><a href="../account-setting.html"><i class="fas fa-cog"></i> Quản lý tài khoản</a></li>
+                <li><a href="../tour-dachon.html"><i class="fas fa-suitcase"></i> Quản lý tour đã chọn</a></li>
+                <li><a href="../thanhtoan.html"><i class="fas fa-credit-card"></i> Thanh toán</a></li>
+                <li class="separator"></li>
+                <li><a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb-container">
+            <p class="breadcrumb">Trang chủ > Du lịch > Tour Dinh Bà - Đảo Tôm Hùm Nha Trang Trọn Gói</p>
+        </div>
+        
+        <div class="tour-detail-content-wrapper">
+            
+            <div class="tour-detail-main">
+                <div class="tour-detail-main-image">
+                    <img src="../images/samson.png" alt="Hình ảnh chính Tour Nha Trang" width="100%">
+                </div>
+                <div class="tour-detail-thumbnails">
+                    <img src="../images/nhatrang1.jpg" alt="Thumbnail 1" width="100%">
+                    <img src="../images/nhatrang2.jpg" alt="Thumbnail 2" width="100%">
+                    <img src="../images/nhatrang3.jpg" alt="Thumbnail 3" width="100%">
+                </div>
+                <div class="tour-detail-description">
+                    <h1>Tour Dinh Bà - Đảo Tôm Hùm Nha Trang Trọn Gói | 4N3Đ</h1>
+                    <p>Địa điểm: Nha Trang. Thời gian: 4 ngày 3 đêm. Khởi hành: Hàng ngày. Phương tiện: Du thuyền, xe.</p>
+                    <h2>Tổng Quan</h2>
+                    <p>Khám phá vùng biển Nha Trang, kết hợp du lịch tâm linh (Dinh Bà) và trải nghiệm ẩm thực đặc sắc tại Đảo Tôm Hùm.</p>
+                    <h2>Chi tiết Tour</h2>
+                    <ul>
+                        <li>Tham quan Dinh Bà và các địa điểm văn hóa, tâm linh tại Nha Trang.</li>
+                        <li>Thưởng thức tiệc hải sản (đặc biệt là Tôm Hùm) tại đảo.</li>
+                        <li>Lặn biển và tham gia các hoạt động thể thao dưới nước.</li>
+                    </ul>
+                    <a href="../tour.html" class="btn-primary tour-back-btn">Tham khảo các địa điểm khác</a>
+                </div>
+            </div>
+            
+            <div class="tour-booking-sidebar">
+                <div class="price-box">Giá: <span>1,400,000 VNĐ</span></div>
+                <form id="booking-form">
+                    <input type="date" id="departure-date" placeholder="Chọn ngày khởi hành" required>
+                    <input type="number" id="quantity" placeholder="Số người" min="1" value="1" required>
+                    <input type="text" id="full-name" placeholder="Họ tên người đặt" required> 
+<input type="tel" id="phone" placeholder="Số điện thoại" required> 
+<input type="email" id="email" placeholder="Địa chỉ email" required>
+                    <textarea placeholder="Nội dung"></textarea>
+                    
+                    <button 
+                        type="button" 
+                        class="btn-primary" 
+                        id="book-tour-btn"
+                        data-tour-id="nhatrang-dinhba" 
+                        data-price="1400000">
+                        Đặt tour ngay
+                    </button>
+                </form>
+            </div>
+            
+        </div>
+        </div>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <p class="footer-logo"><img src="../images/lg5.jpg" alt="Logo" width="40" style="vertical-align: middle; margin-right: 5px;"><strong>Nhom5Traver</strong></p>
+                <p>Trevalo là website cung cấp dịch vụ Đặt phòng khách sạn - Tour - Xe du lịch - Vé máy bay và tất cả các hoạt động du lịch tại các điểm đến du lịch phổ biến nhất Việt Nam dành cho du khách.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Trụ sở chính</h3>
+                <p>Tầng 4, Tòa nhà số 97 - 99 Láng Hạ, Đống Đa, Hà Nội</p>
+                <p>0901191616</p>
+                <p>contact@nhom5.vn</p>
+                <p>Thứ 2 - Chủ nhật: 08:00 - 21:00</p>
+            </div>
+            <div class="footer-col">
+                <h3>Về chúng tôi</h3>
+                <ul>
+                    <li><a href="../index.html">Trang chủ</a></li>
+                    <li><a href="../gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="../tour.html">Tour</a></li>
+                    <li><a href="../lienhe.html">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Đối tác & Liên kết</h3>
+                <ul>
+                    <li><a href="#">Cam kết bồi đặt gấp đôi</a></li>
+                    <li><a href="#">Đối tác khách sạn</a></li>
+                    <li><a href="#">Liên kết bán hàng</a></li>
+                    <li><a href="#">Chương trình tích lũy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../auth.js"></script> 
+    <script src="../booking.js"></script>
+</body>
+</html>

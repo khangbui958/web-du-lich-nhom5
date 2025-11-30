@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Tài khoản</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+</head>
+<body class="logged-in"> 
+
+    <header class="main-header">
+        <div class="header-top">
+            <div class="logo">
+                <img src="images/lg5.jpg" alt="Nhom5Traver Logo">
+                <span>Nhom5Traver</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="tour.html">Tour</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions not-logged-in">
+                <a href="login.html" class="btn-secondary">Đăng nhập</a>
+                <a href="register.html" class="btn-primary">Đăng ký</a>
+            </div>
+            <div class="header-actions logged-in-header">
+                <div class="user-profile">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <span class="username"></span> 
+                </div>
+                <div class="user-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="user-dropdown-menu"> 
+            <ul>
+                <li><a href="account-setting.html"><i class="fas fa-cog"></i> Quản lý tài khoản</a></li>
+                <li><a href="tour-dachon.html"><i class="fas fa-suitcase"></i> Quản lý tour đã chọn</a></li>
+                <li><a href="thanhtoan.html"><i class="fas fa-credit-card"></i> Thanh toán</a></li>
+                <li class="separator"></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li> 
+            </ul>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="account-management">
+            <h2>Quản lý Tài khoản</h2>
+            <div class="account-grid">
+                
+                <aside class="sidebar-menu">
+                    <ul>
+                        <li class="active"><a href="#personal-info"><i class="fas fa-user"></i> Thông tin cá nhân</a></li>
+                        <li><a href="#change-password"><i class="fas fa-key"></i> Đổi mật khẩu</a></li>
+                        <li><a href="#"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li> 
+                    </ul>
+                </aside>
+                
+                <div class="account-content">
+                    
+                    <div id="personal-info" class="content-tab active-content">
+                        <h3>Thông tin cá nhân</h3>
+                        <div id="info-update-message" class="general-message" style="display: none;"></div>
+                        
+                        <form class="account-form">
+                            <div class="form-group">
+                                <label for="fullname">Họ và Tên:</label>
+                                <input type="text" id="fullname" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" id="email" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại:</label>
+                                <input type="tel" id="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Địa chỉ:</label>
+                                <input type="text" id="address">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Ngày sinh:</label>
+                                <input type="date" id="dob">
+                            </div>
+                            <button type="submit" class="btn-primary">Cập nhật thông tin</button>
+                        </form>
+                    </div>
+
+                    <div id="change-password" class="content-tab">
+                        <h3>Đổi mật khẩu</h3>
+                        <div id="password-update-message" class="general-message" style="display: none;"></div>
+                        
+                        <form class="password-form">
+                            <div class="form-group">
+                                <label for="old-password">Mật khẩu cũ:</label>
+                                <input type="password" id="old-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">Mật khẩu mới:</label>
+                                <input type="password" id="new-password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Xác nhận mật khẩu mới:</label>
+                                <input type="password" id="confirm-password" required>
+                            </div>
+                            <button type="submit" class="btn-primary">Cập nhật mật khẩu</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="footer-logo">
+                    <img src="images/lg5.jpg" alt="Nhom5Traver Logo">
+                    <span>Nhom5Traver</span>
+                </div>
+                <p>Trevalo là website cung cấp dịch vụ Đặt phòng khách sạn - Tour - Xe du lịch - Vé máy bay và tất cả các hoạt động du lịch tại các điểm đến du lịch phổ biến nhất Việt Nam dành cho du khách.</p>
+            </div>
+            <div class="footer-col">
+                <h3>TRỤ SỞ CHÍNH</h3>
+                <p>Tầng 4, Tòa nhà số 97 - 99 Láng Hạ, Đống Đa, Hà Nội (Tòa nhà Petrowaco)</p>
+                <p>0901191616</p>
+                <p>contact@nhom5.vn</p>
+                <p>Thứ 2 - Chủ nhật: 08:00 - 21:00</p>
+            </div>
+            <div class="footer-col">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="tour.html">Tour</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>ĐỐI TÁC & LIÊN KẾT</h3>
+                <ul>
+                    <li><a href="#">Cơ hội hợp tác dân</a></li>
+                    <li><a href="#">Đối tác khách sạn</a></li>
+                    <li><a href="#">Liên kết bán hàng</a></li>
+                    <li><a href="#">Chương trình tích lũy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="account-setting.js"></script> 
+</body>
+</html>

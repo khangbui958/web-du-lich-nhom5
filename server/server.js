@@ -1,21 +1,28 @@
 // server.js
-
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const path = require('path');
+
+const app = express();
+const port = process.env.PORT || 3000;
+const saltRounds = 10;
+
+// Phục vụ file tĩnh từ thư mục hiện tại
 app.use(express.static(__dirname));
 
+// Route GET / để trả về index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Khởi động server
+app.listen(port, () => {
+    console.log(`Server đang chạy tại http://localhost:${port}`);
+});
 
-const app = express();
-const port = process.env.PORT || 3000;
-const saltRounds = 10; 
 
 // Đường dẫn đến tours.json (giả định ở cùng thư mục server)
 // PATH đã được kiểm tra và giữ nguyên
