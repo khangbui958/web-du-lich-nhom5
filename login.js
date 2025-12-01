@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('login-form');
     // ID để hiển thị thông báo. (Cần có <div id="login-message">...</div> trong login.html)
     const messageElementId = 'login-message'; 
-    const API_URL = 'http://localhost:3000/api/login'; 
+    const API_URL = 'https://web-du-lich-nhom5-2.onrender.com/api/login';
 
     // Hàm hiển thị thông báo (Giữ nguyên)
     function showMessage(id, message, type) {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } catch (error) {
                 console.error('Lỗi kết nối Backend:', error);
-                showMessage(messageElementId, '❌ Lỗi: Không thể kết nối đến máy chủ. Vui lòng kiểm tra Server (cổng 3000).', 'error');
+                showMessage(messageElementId, '❌ Lỗi: Không thể kết nối đến máy chủ. Vui lòng kiểm tra Server .', 'error');
             }
         });
     }

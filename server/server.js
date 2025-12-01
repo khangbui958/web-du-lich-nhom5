@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 // Khởi động server
 app.listen(port, () => {
-    console.log(`Server đang chạy tại http://localhost:${port}`);
+    console.log(`Server đang chạy tại: ${process.env.PORT ? 'Render Cloud' : 'Local'} - http://localhost:${port}`);
 });
 
 

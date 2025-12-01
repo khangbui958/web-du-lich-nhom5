@@ -1,8 +1,7 @@
 // account-setting.js (Phiên bản Hoàn chỉnh & Tối ưu)
 
 document.addEventListener('DOMContentLoaded', function() {
-    const API_BASE_URL = 'http://localhost:3000/api/user'; 
-    
+    const API_BASE_URL = 'https://web-du-lich-nhom5-2.onrender.com/api/user';
     // Khai báo biến LỚN (sẽ được cập nhật sau khi fetch/update)
     let currentUser = null; 
     let userToken = localStorage.getItem('userToken'); 

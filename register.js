@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const registerForm = document.getElementById('register-form');
     // Thêm một div để hiển thị thông báo ngay dưới form (bạn cần thêm id="register-message" vào HTML)
     const messageElementId = 'register-message'; 
-    const API_URL = 'http://localhost:3000/api/register';
+    const API_URL = 'https://web-du-lich-nhom5-2.onrender.com/api/register';
 
     // Hàm hiển thị thông báo (Bạn cần đảm bảo hàm này có trong file script.js chung)
     function showMessage(id, message, type) {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } catch (error) {
                 console.error('Lỗi kết nối:', error);
-                showMessage(messageElementId, '❌ Lỗi: Không thể kết nối đến máy chủ. Vui lòng kiểm tra Server (cổng 3000).', 'error');
+                showMessage(messageElementId, '❌ Lỗi: Không thể kết nối đến máy chủ. Vui lòng kiểm tra Server .', 'error');
             }
         });
     }
