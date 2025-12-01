@@ -20,12 +20,11 @@ app.get('/', (req, res) => {
 
 // Khởi động server
 app.listen(port, () => {
-    console.log(`Server đang chạy tại: ${process.env.PORT ? 'Render Cloud' : 'Local'} - http://localhost:${port}`);
+    console.log(`Server đang chạy tại http://localhost:${port}`);
+    console.log(`Kiểm tra API tại Postman hoặc trình duyệt.`);
 });
 
-
 // Đường dẫn đến tours.json (giả định ở cùng thư mục server)
-// PATH đã được kiểm tra và giữ nguyên
 const toursFilePath = path.join(__dirname, 'tours.json');
 
 // Hàm đọc dữ liệu tour từ tours.json
@@ -243,32 +242,27 @@ app.patch('/api/user/change-password', (req, res) => {
 
 // =========================================================
 // API 5: LẤY THÔNG TIN TOUR CHI TIẾT (GET /api/tours/:id)
-// *** ĐÃ SỬA LỖI LOGIC: TÌM KIẾM TRỰC TIẾP ID BẰNG tourId NHẬN ĐƯỢC ***
 // =========================================================
 app.get('/api/tours/:id', (req, res) => {
     const tourId = req.params.id; 
     const tours = loadToursData(); 
 
-    // CHỈ TÌM KIẾM TRỰC TIẾP. Bỏ qua logic ánh xạ ID sai.
     const tour = tours.find(t => t.id === tourId);
 
-    if (tour) {
+        if (tour) {
         res.json({
             id: tour.id,
             title: tour.name,
             price: tour.price_value,
         });
     } else {
-        // Lỗi này sẽ biến mất sau khi sửa lỗi ánh xạ sai
         console.warn(`Yêu cầu Tour ID không tìm thấy: ${tourId}`); 
         res.status(404).send({ message: `Tour ID ${tourId} not found.` }); 
     }
 });
 
-
 // =========================================================
 // API 6: ĐẶT VÀ LƯU ĐƠN HÀNG (POST /api/orders)
-// Xử lý form thanh toán
 // =========================================================
 app.post('/api/orders', (req, res) => {
     const { 
@@ -276,19 +270,17 @@ app.post('/api/orders', (req, res) => {
         tour_id_input, 
         departure_date_input, 
         total_amount_input,
-        quantity // Giả định trường này được gửi từ form
+        quantity
     } = req.body; 
 
     if (!email || !tour_id_input || !total_amount_input) {
         return res.status(400).json({ message: 'Thiếu thông tin đặt hàng.' });
     }
 
-    // Lấy tên tour để lưu vào DB
     const tours = loadToursData();
     const tourDetail = tours.find(t => t.id === tour_id_input);
     const tourName = tourDetail ? tourDetail.name : 'Tour Name N/A';
 
-    // Lấy số lượng khách
     const guestCount = parseInt(quantity) || 1;
     
     const sql = `INSERT INTO bookings (user_email, tourId, tourName, departureDate, guestCount, totalPrice) VALUES (?, ?, ?, ?, ?, ?)`;
@@ -312,10 +304,10 @@ app.post('/api/orders', (req, res) => {
     });
 });
 
-
-// Khởi động Server
 app.listen(port, () => {
     console.log(`Server đang chạy tại http://localhost:${port}`);
     console.log(`Kiểm tra API tại Postman hoặc trình duyệt.`);
 });
+
 app.use(express.static(path.join(__dirname, '../')));
+
