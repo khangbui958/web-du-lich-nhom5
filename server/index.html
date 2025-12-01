@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhom5Traver - Trang Chủ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-top">
+            <div class="logo">
+                <img src="images/lg5.jpg" alt="Nhom5Traver Logo">
+                <span>Nhom5Traver</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" id="home-link" class="active">Trang chủ</a></li> 
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="tour.html">Tour</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions not-logged-in">
+                <a href="login.html" class="btn-secondary">Đăng nhập</a>
+                <a href="register.html" class="btn-primary">Đăng ký</a>
+            </div>
+            
+            <div class="header-actions logged-in-header" style="display: none;">
+                <div class="user-profile user-menu-toggle">
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <span class="username" id="display-username"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="user-dropdown-menu" style="display: none;"> 
+            <ul>
+                <li><a href="account-setting.html"><i class="fas fa-cog"></i> Quản lý tài khoản</a></li>
+                <li><a href="tour-dachon.html"><i class="fas fa-suitcase"></i> Quản lý tour đã chọn</a></li>
+                <li><a href="thanhtoan.html"><i class="fas fa-credit-card"></i> Thanh toán</a></li>
+                <li class="separator"></li>
+                <li><a href="#" id="logout-button"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+            </ul>
+        </div>
+
+        <div class="header-hero">
+            <img src="images/H1.png" alt="Vịnh Hạ Long">
+            <div class="hero-content">
+                <h1>Thế giới tour trong tay bạn</h1>
+                <p>Đi xa để thấy, đi gần để nhớ.</p>
+                <form class="hero-search-form">
+                    <div class="search-input-group">
+                        <span class="icon-location"></span>
+                        <label>Địa điểm</label>
+                        <input type="text" placeholder="Bạn muốn đi đâu">
+                    </div>
+                    <div class="search-input-group">
+                        <span class="icon-time"></span>
+                        <label>Thời gian</label>
+                        <input type="text" placeholder="Chọn số ngày đi">
+                    </div>
+                    <div class="search-input-group">
+                        <span class="icon-calendar"></span>
+                        <label>Khởi hành</label>
+                        <input type="date">
+                    </div>
+                    <button type="submit" class="btn-primary">Tìm kiếm</button>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" style="padding: 20px 0;">
+            <h2 id="welcome-message" style="color: var(--primary-color); text-align: center;"></h2>
+        </div>
+        
+        <section class="services-section-new">
+            <div class="container services-grid">
+                <div class="service-left-content">
+                    <p class="section-subtitle">LỢI ÍCH CỦA QUÝ KHÁCH KHI ĐẶT</p>
+                    <h2>Dịch vụ tại Nhom5Traver</h2>
+                    
+                    <div class="service-item-new">
+                        <h3>Chuyến đi hoàn hảo **Trải nghiệm được chọn lọc**</h3>
+                        <p>Xem đánh giá từ người dùng và từ những khách hàng đã trải nghiệm để chọn dịch vụ hoàn hảo</p>
+                    </div>
+                    
+                    <div class="service-item-new">
+                        <h3>Nhanh chóng, tiện lợi, an toàn</h3>
+                        <p>Xem đánh giá từ người dùng và từ những khách hàng đã trải nghiệm để chọn dịch vụ hoàn hảo</p>
+                    </div>
+
+                    <div class="service-item-new">
+                        <h3>Chính sách đảm bảo giá tốt nhất</h3>
+                        <p>Nhiều ưu đãi hấp dẫn diễn ra hàng ngày, giảm đến 70%. Luôn có giá trị tốt.</p>
+                    </div>
+                </div>
+                <div class="service-right-images">
+                    <img class="img-top" src="images/h2.jpg" alt="Núi rừng">
+                </div>
+            </div>
+        </section>
+
+        <section class="call-to-action-banner-new">
+            <div class="container cta-content-wrap">
+                <div class="cta-left-image">
+                    <img class="img-beach-aerial-1" src="images/h3.jpg" alt="Bãi biển từ trên cao">
+                    <img class="img-beach-aerial-2" src="images/h4.jpg" alt="Sóng biển">
+                </div>
+                <div class="cta-right-content">
+                    <p class="section-subtitle">Tour & Trải nghiệm</p>
+                    <h2>Thế giới trọn niềm vui</h2>
+                    <p>Khám phá những nơi mới, đi du lịch là cách tuyệt vời để thư giãn và mở mang kiến thức, kết bạn thêm với nhiều người mới, hãy cùng khám phá những hành trình, đi du lịch nhé!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="attractive-tours">
+            <h2>Du lịch hấp dẫn</h2>
+            <p class="section-subtitle">Tour & dịch vụ du lịch hấp dẫn</p>
+            <div class="tour-cards-grid">
+                <div class="tour-card">
+                    <a href="sections/tour-condao-tamlinh.html">
+                    <img src="images/samson.png" alt="Tour Tam Linh Côn Đảo">
+                    <h3>Tour Tam Linh Côn Đảo - 2N1Đ</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> Sầm Sơn</li>
+                        <li><span class="label">Thời gian:</span> 2 ngày 1 đêm</li>
+                        <li><span class="label">Khởi hành:</span> Hàng ngày</li>
+                        <li><span class="label">Phương tiện:</span> Du thuyền, xe</li>
+                    </ul>
+                    <span class="price">1,400,000 VND</span>
+                    </a>
+                </div>
+                <div class="tour-card">
+                    <a href="sections/tour-phuquoc-baongoc.html">
+                    <img src="images/haiphong.jpg" alt="Tour Phú Quốc">
+                    <h3>Tour Phú Quốc - Thiên Đường Bảo Ngọc - 3N2Đ</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> Hải Phòng</li>
+                        <li><span class="label">Thời gian:</span> 3 ngày 2 đêm</li>
+                        <li><span class="label">Khởi hành:</span> Hàng ngày</li>
+                        <li><span class="label">Phương tiện:</span> Du thuyền, xe</li>
+                    </ul>
+                    <span class="price">1,400,000 VND</span>
+                    </a>
+                </div>
+                <div class="tour-card">
+                    <a href="sections/tour-tayninh-chinhphuc.html">
+                    <img src="images/tayninh.png" alt="Tour Tây Ninh">
+                    <h3>Tây Ninh 1 Ngày - Chinh phục nóc nhà Đông Nam Bộ</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> Sầm Sơn</li>
+                        <li><span class="label">Thời gian:</span> 4 ngày 3 đêm</li>
+                        <li><span class="label">Khởi hành:</span> Hàng ngày</li>
+                        <li><span class="label">Phương tiện:</span> Du thuyền, xe</li>
+                    </ul>
+                    <span class="price">1,400,000 VND</span>
+                    </a>
+                </div>
+                <div class="tour-card">
+                    <a href="sections/tour-khachdoan-dalat.html">
+                    <img src="images/hanoi.png" alt="Tour Khách Đoàn Đà Lạt">
+                    <h3>Tour Khách Đoàn Đà Lạt</h3>
+                    <ul>
+                        <li><span class="label">Địa điểm:</span> Hà Nội</li>
+                        <li><span class="label">Thời gian:</span> 4 ngày 3 đêm</li>
+                        <li><span class="label">Khởi hành:</span> Hàng ngày</li>
+                        <li><span class="label">Phương tiện:</span> Du thuyền, xe</li>
+                    </ul>
+                    <span class="price">1,400,000 VND</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="suggested-locations">
+            <h2>Một số địa điểm mà bạn có thể thích</h2>
+            <div class="location-cards-grid">
+                <div class="location-card">
+                    <img src="images/nhatrang.jpg" alt="Nha Trang">
+                    <span>NHA TRANG</span>
+                </div>
+                <div class="location-card">
+                    <img src="images/hcm.jpg" alt="Hồ Chí Minh">
+                    <span>HỒ CHÍ MINH</span>
+                </div>
+                <div class="location-card">
+                    <img src="images/dalat.jpg" alt="Đà Lạt">
+                    <span>ĐÀ LẠT</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="bottom-main-banner">
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-col footer-info">
+                <div class="footer-logo">
+                    <img src="images/lg5.jpg" alt="Nhom5Traver Logo">
+                    <span>Nhom5Traver</span>
+                </div>
+                <p>Trevalo là website cung cấp dịch vụ Đặt phòng khách sạn - Tour - Xe du lịch - Vé máy bay và tất cả các hoạt động du lịch tại các điểm đến du lịch phổ biến nhất Việt Nam dành cho du khách.</p>
+            </div>
+            <div class="footer-col footer-contact">
+                <h3>TRỤ SỞ CHÍNH</h3>
+                <p>Tầng 4, Tòa nhà số 97 - 99 Láng Hạ, Đống Đa, Hà Nội (Tòa nhà Petrowaco)</p>
+                <p>0901191616</p>
+                <p>contact@nhom5.vn</p>
+                <p>Thứ 2 - Chủ nhật: 08:00 - 21:00</p>
+            </div>
+            <div class="footer-col">
+                <h3>VỀ CHÚNG TÔI</h3>
+                <ul>
+                    <li><a href="index.html" class="home-link-footer">Trang chủ</a></li> 
+                    <li><a href="gioithieu.html">Giới thiệu</a></li>
+                    <li><a href="tour.html">Tour</a></li>
+                    <li><a href="lienhe.html">Liên hệ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>ĐỐI TÁC & LIÊN KẾT</h3>
+                <ul>
+                    <li><a href="#">Com bo đối tác hấp dẫn</a></li>
+                    <li><a href="#">Đối tác khách sạn</a></li>
+                    <li><a href="#">Liên kết bán hàng</a></li>
+                    <li><a href="#">Chương trình tích lũy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="auth.js"></script> 
+
+</body>
+</html>
