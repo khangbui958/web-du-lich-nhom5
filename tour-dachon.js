@@ -1,4 +1,4 @@
-// tour-dachon.js - PHIÊN BẢN HOÀN CHỈNH: TỐI ƯU HÓA LỌC TOUR THEO TÀI KHOẢN VÀ GIỮ LOGIC ĐẶT/HỦY TOUR
+// tour-dachon.js - PHIÊN BẢN CUỐI CÙNG: KHÔNG CÓ TOUR-DETAIL, CHỈ CÓ TOUR-DACHON
 
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Khai báo biến và tham chiếu DOM
@@ -19,6 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const completedList = document.getElementById('completed');
     const cancelledList = document.getElementById('cancelled');
     const emptyMessage = document.getElementById('empty-list-message');
+    
+    // ✅ Biến Modal dùng tiền tố dachon
+    const dachonModal = document.getElementById('tour-dachon-modal'); 
+    const dachonModalContent = document.getElementById('tour-dachon-content');
+    
     let allToursData = {}; // Lưu trữ dữ liệu đã phân loại
 
     // Hàm định dạng số tiền VND
@@ -27,35 +32,39 @@ document.addEventListener('DOMContentLoaded', () => {
         return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number);
     };
 
-    // Hàm giả lập chi tiết tour (Sử dụng tourId gốc)
+    // Hàm giả lập chi tiết tour tĩnh (dùng cho mô tả và giá gốc nếu cần)
     const getTourDetailsStatic = (tourId) => {
         switch (tourId) {
             case 'condao-2n1d':
                 return {
+                    id: 'condao-2n1d',
                     name: 'Tour Tầm Linh Côn Đảo | 2N1Đ',
                     image: 'images/samson.png', 
-                    url: 'tour-details/condao-2n1d.html', 
+                    description: 'Khám phá Côn Đảo huyền bí, viếng mộ chị Võ Thị Sáu và thăm quan các địa danh lịch sử.',
                     price: 1400000 
                 };
             case 'phuquoc-3n2d':
                 return { 
+                    id: 'phuquoc-3n2d',
                     name: 'Tour Phú Quốc - Thiên Đường Bảo Ngọc - 3N2Đ', 
                     image: 'images/haiphong.jpg', 
-                    url: 'tour-details/phuquoc.html', 
+                    description: 'Tận hưởng bãi biển đẹp, khám phá công viên Vinpearl Safari và thư giãn tại resort.',
                     price: 4200000
                 };
             case 'tayninh-1d':
                 return { 
+                    id: 'tayninh-1d',
                     name: 'Tây Ninh 1 Ngày - Chinh phục nóc nhà Đông Nam Bộ', 
                     image: 'images/tayninh.png', 
-                    url: 'tour-details/tayninh.html', 
+                    description: 'Tham quan Núi Bà Đen bằng cáp treo và viếng Tòa Thánh Tây Ninh.',
                     price: 1400000 
                 };
             default:
                 return { 
+                    id: tourId,
                     name: `Tour: ${tourId} (Không rõ)`, 
                     image: 'images/default-tour.jpg', 
-                    url: '#',
+                    description: 'Thông tin chi tiết đang được cập nhật.',
                     price: 1000000
                 };
         }
@@ -64,63 +73,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hàm lấy và phân loại tour của người dùng hiện tại
     const getAndCategorizeTours = () => {
         const allTours = JSON.parse(localStorage.getItem('selectedTours')) || [];
-        
-        // **QUAN TRỌNG:** Chỉ lọc tour thuộc về EMAIL hiện tại.
         const userTours = allTours.filter(tour => tour.email === currentEmail);
-        
         const today = new Date();
         today.setHours(0, 0, 0, 0); 
         
-        const toursData = {
-            upcoming: [],
-            completed: [],
-            cancelled: []
-        };
+        const toursData = { upcoming: [], completed: [], cancelled: [] };
         
         userTours.forEach(tour => {
             const staticDetails = getTourDetailsStatic(tour.tourId);
             
-            // Cập nhật/Ánh xạ chi tiết tour
-            // Sử dụng giá/tên lưu trong tour (nếu có) hoặc lấy từ staticDetails
             tour.price = tour.price || staticDetails.price; 
             tour.name = tour.name || staticDetails.name; 
             tour.image = tour.image || staticDetails.image; 
-            tour.url = staticDetails.url; 
-            tour.totalPrice = tour.price * tour.quantity; // Tính tổng tiền
+            tour.description = staticDetails.description;
+            tour.totalPrice = tour.price * tour.quantity; 
 
             const tourDate = new Date(tour.date);
 
-            // Phân loại tour dựa trên trạng thái và ngày khởi hành
             if (tour.status === 'cancelled') {
                 toursData.cancelled.push(tour);
             } else if (tour.status === 'completed' || (tour.status !== 'cancelled' && tourDate < today)) {
-                // Nếu tour đã qua ngày khởi hành VÀ chưa bị hủy, coi như đã hoàn thành
                 toursData.completed.push(tour);
                 if (tour.status !== 'completed') tour.status = 'completed';
             } else {
-                // Bao gồm 'pending' và 'confirmed' chưa khởi hành
                 toursData.upcoming.push(tour); 
             }
         });
         
         allToursData = toursData; 
-        
-        // Cần lưu lại ngay lập tức nếu có tour bị chuyển từ upcoming sang completed
         saveAllTours(toursData);
         return toursData;
     };
     
-    // Hàm lưu lại tất cả tour đã cập nhật
+    // Hàm lưu lại tất cả tour đã cập nhật vào LocalStorage
     const saveAllTours = (toursData) => {
         let allTours = JSON.parse(localStorage.getItem('selectedTours')) || [];
-        
-        // 🔥 Cập nhật quan trọng: Lọc tour của người dùng khác HOẶC tour không có trường 'email' (tour cũ)
         const otherUsersTours = allTours.filter(tour => tour.email !== currentEmail || !tour.email);
-        
-        // Tổng hợp tất cả tour đã cập nhật của người dùng hiện tại
         const updatedUserTours = [...toursData.upcoming, ...toursData.completed, ...toursData.cancelled];
-        
-        // Lưu lại toàn bộ mảng (Tour của người khác + Tour đã cập nhật của người dùng hiện tại)
         localStorage.setItem('selectedTours', JSON.stringify([...otherUsersTours, ...updatedUserTours]));
     };
     
@@ -150,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusClass = 'status-confirmed';
                 statusText = 'Đã xác nhận';
                 actionsHTML = `
-                    <a href="${tour.url}" class="btn-primary">Xem chi tiết</a>
+                    <button class="btn-primary btn-detail-tour" data-action="view-detail" data-tour-id="${tour.id}">Xem chi tiết</button>
                     <button class="btn-secondary btn-cancel" data-action="cancel" data-tour-id="${tour.id}">Hủy tour</button>
                 `; 
                 break;
@@ -158,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusClass = 'status-completed';
                 statusText = 'Đã hoàn thành';
                 actionsHTML = `
-                    <a href="${tour.url}" class="btn-primary">Xem chi tiết</a>
+                    <button class="btn-primary btn-detail-tour" data-action="view-detail" data-tour-id="${tour.id}">Xem chi tiết</button>
                     <button class="btn-secondary btn-rebook" data-action="rebook" data-tour-id="${tour.id}" data-tour-product-id="${tour.tourId}">Đặt lại tour</button>
                 `;
                 break;
@@ -167,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 statusText = 'Đã hủy';
                 actionsHTML = `
                     <button class="btn-primary btn-rebook" data-action="rebook" data-tour-id="${tour.id}" data-tour-product-id="${tour.tourId}">Đặt lại tour</button>
-                    <a href="${tour.url}" class="btn-secondary">Xem chi tiết</a>
+                    <button class="btn-secondary btn-detail-tour" data-action="view-detail" data-tour-id="${tour.id}">Xem chi tiết</button>
                 `;
                 break;
             default:
@@ -180,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${tour.image}" alt="${tour.name}">
             </div>
             <div class="tour-details">
-                <h3><a href="${tour.url}" style="color: inherit; text-decoration: none;">${tour.name}</a></h3>
+                <h3><span style="color: inherit; text-decoration: none; cursor: default;">${tour.name}</span></h3>
                 <p><strong>Mã đặt chỗ:</strong> ${tour.id}</p>
                 <p><strong>Ngày khởi hành:</strong> ${departureDate}</p>
                 <p><strong>Số người:</strong> ${tour.quantity}</p>
@@ -231,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Gắn lại sự kiện sau khi nội dung được render
         attachActionListeners(toursData);
     };
-    
+
     // Xử lý logic ẩn/hiện danh sách và thông báo rỗng
     const handleTabContent = (activeTabId) => {
         document.querySelectorAll('.tour-list').forEach(list => list.style.display = 'none');
@@ -260,29 +249,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         handleTabContent(target.dataset.tab);
     };
-    
+
     // HÀM ĐẶT LẠI TOUR (Rebook) - CHỈ CHUYỂN HƯỚNG
     const handleRebook = (tourId, tourProductId) => {
-        // 1. Chỉ xác nhận và kiểm tra sự tồn tại 
         if (!confirm('Bạn có chắc chắn muốn Đặt lại (Rebook) tour này không? Bạn sẽ được chuyển hướng đến trang thanh toán.')) {
             return;
         }
-
         let foundIndex = allToursData.cancelled.findIndex(t => t.id === tourId);
-
         if (foundIndex === -1) {
             alert('Lỗi: Không tìm thấy tour đã hủy để đặt lại.');
             return;
         }
-        
-        // Việc xóa tour cũ sẽ được xử lý trong thanhtoan.js sau khi thanh toán thành công.
-
         const checkoutUrl = `thanhtoan.html?tourId=${tourProductId}&rebook=true&rebookBookingId=${tourId}`;
-        
         window.location.href = checkoutUrl;
     };
     
-    // Gắn sự kiện cho các nút hành động (Hủy tour và Thanh toán, Đặt lại)
+    // Gắn sự kiện cho các nút hành động (Hủy tour và Thanh toán, Đặt lại, Xem chi tiết)
     const attachActionListeners = (toursData) => {
         
         // 1. Hủy tour
@@ -309,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // 2. Thanh toán (Chỉ chuyển hướng)
+        // 2. Thanh toán
         document.querySelectorAll('[data-action="pay"]').forEach(link => {
             link.addEventListener('click', (event) => {
                 event.preventDefault(); 
@@ -324,10 +306,53 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', (event) => {
                 const tourId = event.target.dataset.tourId; 
                 const tourProductId = event.target.dataset.tourProductId; 
-                
                 handleRebook(tourId, tourProductId);
             });
         });
+
+        // 4. XEM CHI TIẾT TOUR (DÙNG MODAL tour-dachon)
+        document.querySelectorAll('[data-action="view-detail"]').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const bookingId = event.target.dataset.tourId; 
+                showDachonModal(bookingId); 
+            });
+        });
+    };
+    
+    // HÀM HIỂN THỊ CHI TIẾT TOUR TRONG MODAL
+    const showDachonModal = (bookingId) => {
+        // Tìm tour trong tất cả các danh mục
+        const tour = [...allToursData.upcoming, ...allToursData.completed, ...allToursData.cancelled]
+                     .find(t => t.id === bookingId);
+
+        if (!tour || !dachonModal || !dachonModalContent) {
+            alert('Lỗi: Không tìm thấy thông tin tour hoặc Modal chưa được thiết lập.');
+            return;
+        }
+
+        const staticDetails = getTourDetailsStatic(tour.tourId);
+        
+        // Gán nội dung chi tiết vào modal
+        dachonModalContent.innerHTML = `
+            <div class="modal-header">
+                <h3>Chi tiết Tour đã chọn: ${tour.name}</h3>
+                <button type="button" class="close-btn" onclick="document.getElementById('tour-dachon-modal').style.display='none'">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img src="${tour.image}" alt="${tour.name}" style="width: 100%; max-height: 200px; object-fit: cover; margin-bottom: 15px;">
+                <p><strong>Mã đặt chỗ:</strong> ${tour.id}</p>
+                <p><strong>Mã tour gốc:</strong> ${tour.tourId}</p>
+                <p><strong>Ngày khởi hành:</strong> ${new Date(tour.date).toLocaleDateString('vi-VN')}</p>
+                <p><strong>Trạng thái:</strong> <span class="tour-status status-${tour.status}">${tour.status}</span></p>
+                <p><strong>Số người:</strong> ${tour.quantity}</p>
+                <p><strong>Tổng tiền:</strong> ${formatCurrency(tour.totalPrice)}</p>
+                <hr>
+                <p><strong>Mô tả tour:</strong> ${staticDetails.description || 'Không có mô tả chi tiết.'}</p>
+            </div>
+        `;
+
+        // Hiển thị modal
+        dachonModal.style.display = 'block';
     };
     
     // Khởi tạo
@@ -338,4 +363,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lấy dữ liệu và hiển thị lần đầu
     const initialToursData = getAndCategorizeTours();
     displayTours(initialToursData);
+    
+    // 5. XỬ LÝ ĐÓNG MODAL KHI CLICK RA NGOÀI
+    if (dachonModal) {
+        dachonModal.addEventListener('click', (event) => {
+            if (event.target === dachonModal) {
+                dachonModal.style.display = 'none';
+            }
+        });
+    }
 });

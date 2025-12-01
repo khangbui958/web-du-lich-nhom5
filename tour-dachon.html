@@ -59,19 +59,19 @@
             <h2><i class="fas fa-suitcase-rolling"></i> Lịch sử Đặt Tour & Quản lý</h2>
             
             <div class="tour-tabs" id="tour-tabs-container">
-                <button class="tab-button active" data-tab="upcoming">Tour Sắp Khởi hành (<span id="count-upcoming">0</span>)</button>
-                <button class="tab-button" data-tab="completed">Tour Đã Hoàn tất (<span id="count-completed">0</span>)</button>
-                <button class="tab-button" data-tab="cancelled">Tour Đã Hủy (<span id="count-cancelled">0</span>)</button>
-            </div>
-            
-            <div id="upcoming" class="tour-list">
-                </div>
-            
-            <div id="completed" class="tour-list" style="display: none;">
-                </div>
-            
-            <div id="cancelled" class="tour-list" style="display: none;">
-                </div>
+                <button class="tab-button active" data-tab="upcoming">Tour Sắp Khởi hành (<span id="count-upcoming">0</span>)</button>
+                <button class="tab-button" data-tab="completed">Tour Đã Hoàn tất (<span id="count-completed">0</span>)</button>
+                <button class="tab-button" data-tab="cancelled">Tour Đã Hủy (<span id="count-cancelled">0</span>)</button>
+            </div>
+            
+            <div id="upcoming" class="tour-list">
+                </div>
+            
+            <div id="completed" class="tour-list" style="display: none;">
+                </div>
+            
+            <div id="cancelled" class="tour-list" style="display: none;">
+                </div>
 
             <div id="empty-list-message" class="empty-message" style="display:none; text-align: center; padding: 50px;">
                 <p><i class="fas fa-info-circle"></i> Danh sách tour trong mục này hiện đang trống. Hãy kiểm tra các mục khác hoặc đặt tour mới!</p>
@@ -79,6 +79,13 @@
             </div>
         </section>
     </main>
+    
+    <div id="tour-dachon-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div id="tour-dachon-content">
+            </div>
+        </div>
+    </div>
 
     <footer class="main-footer">
         <div class="footer-content">

@@ -39,6 +39,7 @@ a:hover {
     padding: 0 15px;
 }
 
+/* --- BUTTONS --- */
 .btn-primary {
     background-color: var(--primary-color);
     color: white;
@@ -67,6 +68,26 @@ a:hover {
     background-color: #f0f0f0;
     text-decoration: none;
 }
+
+/* Nút vàng cho Form Liên hệ và Đặt Tour */
+.btn-secondary-yellow {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 15px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+}
+.btn-secondary-yellow:hover {
+    background-color: #e0a800;
+    transform: translateY(-1px);
+}
+
+
 .btn-full-width {
     width: 100%;
     margin-top: 20px;
@@ -88,7 +109,7 @@ a:hover {
     background-color: #c82333;
 }
 
-
+/* --- HEADER & NAVIGATION --- */
 .main-header {
     background-color: #fff;
 }
@@ -163,14 +184,17 @@ a:hover {
     color: white;
 }
 
+/* LOGGED IN UI */
 .header-actions.logged-in-header {
     display: flex;
     align-items: center;
     gap: 15px;
     position: relative;
+    /* Mặc định display: none (sẽ được JS set lại) */
 }
 .header-actions.not-logged-in {
-    display: none;
+    /* Mặc định display: flex (sẽ được JS set lại) */
+    display: flex;
 }
 
 .logged-in-header .user-profile {
@@ -242,6 +266,7 @@ a:hover {
 }
 
 
+/* --- HERO SECTION --- */
 .header-hero {
     position: relative;
     height: 450px;
@@ -319,6 +344,7 @@ a:hover {
     margin-left: 10px;
 }
 
+/* --- BREADCRUMB --- */
 .breadcrumb-container {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -331,6 +357,7 @@ a:hover {
 }
 
 
+/* --- GENERAL CONTENT STYLE --- */
 section {
     padding: 40px 0;
 }
@@ -353,7 +380,7 @@ h1 {
     color: var(--primary-color);
 }
 
-
+/* --- SERVICES SECTION --- */
 .services-section-new {
     padding: 60px 0;
 }
@@ -416,6 +443,7 @@ h1 {
     z-index: 1;
 }
 
+/* --- CALL TO ACTION --- */
 .call-to-action-banner-new {
     background-color: var(--cta-bg-color);
     padding: 50px 0;
@@ -470,6 +498,7 @@ h1 {
     font-weight: bold;
 }
 
+/* --- TOUR CARDS & LOCATION CARDS (HOME/TOUR LISTING) --- */
 .attractive-tours, .suggested-locations {
     padding: 40px 15px;
     text-align: center;
@@ -603,6 +632,7 @@ h1 {
     background: url(images/bottom_banner_mountains.jpg) center/cover no-repeat;
 }
 
+/* --- ABOUT PAGE --- */
 .content-header {
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -668,62 +698,109 @@ h1 {
     border-radius: 8px;
 }
 
+/* --- CONTACT PAGE (LIÊN HỆ) --- */
 .contact-form-section {
     padding: 40px 0;
 }
 
 .contact-grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    max-width: 1000px;
+    display: flex;              /* dùng flexbox để chia 2 cột */
+    flex-wrap: nowrap;          /* không xuống dòng */
+    max-width: 1000px; 
     margin: 0 auto;
-    align-items: center;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    align-items: stretch;
+    min-height: 550px; 
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    background-color: #fff;
 }
 
+/* Ảnh bên trái */
 .contact-image-wrapper {
-    height: 480px;
+    width: 50%; /* chiếm 50% */
+    height: 100%;
 }
 .contact-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block; 
 }
 
+/* Form bên phải */
 .contact-form-wrapper {
+    width: 50%; /* chiếm 50% */
     padding: 40px;
     background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
-
 .contact-form-wrapper h2 {
     color: var(--text-color);
     margin-bottom: 10px;
+    text-align: left;
 }
-
+.contact-form-wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1;
+    justify-content: center;
+}
 .contact-form-wrapper form input,
 .contact-form-wrapper form textarea {
     width: 100%;
     padding: 12px;
-    margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
-
 .contact-form-wrapper form textarea {
     resize: vertical;
     min-height: 120px;
 }
-
 .contact-form-wrapper form button {
     background-color: var(--secondary-color);
     color: var(--text-color);
     font-weight: bold;
     width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    margin-top: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.contact-form-wrapper form button:hover {
+    background-color: #e0a800;
+    transform: translateY(-1px);
+}
+.contact-form-wrapper .general-message {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: left;
 }
 
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 992px) {
+    .contact-grid-container {
+        flex-direction: column; 
+        min-height: auto;
+    }
+    .contact-image-wrapper, .contact-form-wrapper {
+        width: 100%; /* chiếm toàn bộ chiều rộng */
+    }
+    .contact-image-wrapper {
+        height: 350px; /* ảnh cố định chiều cao khi ở trên */
+    }
+}
+
+
+
+/* --- TOUR LISTING PAGE --- */
 .tour-header-banner {
     position: relative;
     height: 250px;
@@ -751,100 +828,8 @@ h1 {
     grid-template-columns: repeat(4, 1fr);
 }
 
-.tour-detail-content-wrapper {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-    padding: 40px 0;
-}
 
-.tour-detail-main-image img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.tour-detail-thumbnails {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
-
-.tour-detail-thumbnails img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
-.tour-detail-description h1 {
-    font-size: 28px;
-    color: var(--text-color);
-    margin-bottom: 20px;
-}
-
-.tour-detail-description p {
-    margin-bottom: 15px;
-}
-
-.tour-detail-description h2 {
-    font-size: 22px;
-    margin-top: 25px;
-    margin-bottom: 10px;
-}
-
-.tour-detail-description ul {
-    list-style: disc;
-    margin-left: 20px;
-}
-
-.tour-detail-description .btn-primary {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-.tour-booking-sidebar {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    height: fit-content;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.price-box {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff0000;
-    text-align: right;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-}
-
-.tour-booking-sidebar form label {
-    display: none;
-}
-
-.tour-booking-sidebar form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
-}
-
-.tour-booking-sidebar form button {
-    background-color: var(--secondary-color);
-    color: var(--text-color);
-    font-weight: bold;
-    width: 100%;
-    padding: 12px;
-}
-
+/* --- AUTH PAGE (LOGIN/REGISTER) --- */
 .auth-section {
     padding: 60px 0;
     background-color: var(--background-color);
@@ -889,6 +874,7 @@ h1 {
     color: var(--light-text-color);
 }
 
+/* --- CHECKOUT PAGE --- */
 .checkout-page-container {
     max-width: 1000px;
     margin: 0 auto;
@@ -1023,6 +1009,7 @@ h1 {
 }
 
 
+/* --- FOOTER --- */
 .main-footer, footer {
     background-color: var(--footer-bg);
     color: var(--text-color);
@@ -1074,300 +1061,8 @@ h1 {
     margin-bottom: 15px;
 }
 
-@media (max-width: 1100px) {
-    .tour-cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 992px) {
-    .tour-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .tour-detail-content-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-grid-container {
-        grid-template-columns: 1fr;
-    }
-    .contact-image-wrapper {
-        height: 300px;
-    }
-    
-    .checkout-page-container {
-        grid-template-columns: 1fr;
-    }
-    .order-summary {
-        order: 1;
-    }
-    .checkout-form {
-        order: 2;
-    }
-    .services-grid, .cta-content-wrap {
-        grid-template-columns: 1fr;
-    }
-    .cta-right-content {
-        padding-top: 20px;
-    }
-    .footer-content {
-        grid-template-columns: 1fr 1fr 1fr 1fr; 
-    }
-}
-
-@media (max-width: 768px) {
-    .header-top {
-        flex-wrap: wrap;
-        justify-content: space-between; 
-    }
-    
-    .main-nav {
-        order: 3;
-        width: 100%;
-        margin-top: 10px;
-        display: block; 
-        text-align: center;
-    }
-    .main-nav ul {
-        flex-direction: column; 
-        align-items: center;
-    }
-    .main-nav ul li a {
-        padding: 5px 15px; 
-    }
-    
-    .header-contact {
-        order: 2;
-        margin-left: auto; 
-        margin-right: 15px;
-    }
-    .header-actions {
-        order: 3;
-    }
-
-    .header-hero {
-        height: 350px; /* SỬA: Giảm chiều cao */
-    }
-
-    .hero-content {
-        justify-content: flex-start; 
-        padding-top: 50px; 
-    }
-    .hero-content h1 {
-        font-size: 32px;
-        margin-bottom: 5px;
-    }
-    .hero-content p {
-        font-size: 16px;
-        margin-bottom: 20px;
-    }
-
-    .hero-search-form {
-        flex-direction: column;
-        width: 90%;
-        max-width: 400px;
-        padding: 10px; /* SỬA: Giảm padding tổng */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        margin-top: -20px; /* SỬA: Nâng khối form lên cao hơn */
-    }
-    .search-input-group {
-        width: 100%;
-        padding: 0;
-        margin-bottom: 5px; /* SỬA: Giảm margin giữa các input group */
-        border-bottom: 1px solid #eee; 
-    }
-    .search-input-group label {
-        font-size: 11px; /* SỬA: Giảm cỡ chữ label */
-    }
-    .search-input-group input {
-        width: 100%;
-        padding: 6px 0; /* SỬA: Giảm padding input */
-        font-size: 15px; /* SỬA: Giảm cỡ chữ input */
-    }
-    .hero-search-form button {
-        margin: 10px 0 0;
-        width: 100%;
-    }
-
-    .service-right-images, .cta-left-image {
-        display: none; 
-    }
-    .location-cards-grid {
-        grid-template-columns: repeat(2, 1fr); 
-        max-width: 90%;
-    }
-
-    .tour-cards-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    .tour-header-banner h2 {
-        font-size: 30px;
-    }
-    .footer-content {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (max-width: 576px) {
-    .header-top {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .logo {
-        font-size: 18px;
-    }
-    
-    .header-contact, .header-actions {
-        order: 2;
-        width: 50%;
-        justify-content: center;
-        margin: 5px 0;
-    }
-
-    .header-hero {
-        height: 250px; /* SỬA: Giảm chiều cao tối đa */
-    }
-    .hero-content h1 {
-        font-size: 30px;
-    }
-    .hero-content p {
-        font-size: 15px;
-        margin-bottom: 15px;
-    }
-    
-    .tour-cards-grid {
-        grid-template-columns: 1fr; 
-    }
-    .tour-card h3 {
-        min-height: auto;
-    }
-    
-    .location-cards-grid {
-        grid-template-columns: 1fr; 
-    }
-
-    .auth-container {
-        padding: 20px;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr; 
-    }
-}
-/* ==================================== */
-/* Bố cục Trang Chi Tiết Tour */
-/* ==================================== */
-.tour-detail-content-wrapper {
-    display: flex;
-    gap: 30px; 
-    margin-top: 30px;
-    align-items: flex-start; /* Quan trọng: căn top cho 2 cột */
-}
-
-.tour-detail-main {
-    flex-grow: 1; 
-    /* Giữ nguyên chiều rộng tối đa, chiếm hết phần còn lại */
-}
-
-/* ==================================== */
-/* Style Sidebar Đặt Tour */
-/* ==================================== */
-.tour-booking-sidebar {
-    flex-basis: 350px; /* Chiều rộng cố định cho sidebar */
-    min-width: 300px;
-    position: sticky; 
-    top: 20px;
-    padding: 0; /* Loại bỏ padding ngoài để price-box sát cạnh */
-    border: 1px solid #c0c0c0; /* Màu viền nhẹ hơn */
-    border-radius: 8px;
-    background-color: #ffffff; /* Nền trắng */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow nhẹ */
-    height: fit-content; 
-}
-
-.price-box {
-    text-align: right;
-    padding: 15px 20px;
-    background-color: #f7f7f7; /* Nền xám nhạt */
-    color: #000; /* Chữ đen */
-    font-size: 1.2em;
-    font-weight: 600;
-    margin: 0; /* Xóa margin */
-    border-radius: 8px 8px 0 0;
-    border-bottom: 1px solid #ddd;
-}
-
-.price-box span {
-    color: #cc0000; /* Giá tiền màu đỏ nổi bật */
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-left: 10px;
-}
-
-/* Style Form trong Sidebar */
-#booking-form {
-    padding: 20px; /* Thêm padding cho nội dung form */
-}
-
-#booking-form input:not([type="button"]):not([type="submit"]),
-#booking-form textarea {
-    width: 100%;
-    padding: 8px 10px; /* Padding ít hơn so với bản trước */
-    margin-bottom: 15px;
-    border: 1px solid #ddd; /* Viền mỏng hơn */
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 0.95em;
-}
-
-#booking-form input[type="number"],
-#booking-form input[type="date"] {
-    height: 40px; /* Chiều cao cố định */
-}
-
-#book-tour-btn {
-    width: 100%;
-    padding: 12px 15px;
-    margin-top: 5px;
-    font-size: 1em;
-    font-weight: 600;
-    /* Giữ nguyên màu vàng primary của bạn */
-}
-
-/* ==================================== */
-/* Style Nội dung chính */
-/* ==================================== */
-.tour-detail-description h1 {
-    font-size: 2em;
-    color: #333;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.tour-detail-description h2 {
-    font-size: 1.5em;
-    color: #555;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 5px;
-    margin-top: 25px;
-    margin-bottom: 10px;
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    .tour-detail-content-wrapper {
-        flex-direction: column; 
-        gap: 20px;
-    }
-
-    .tour-booking-sidebar {
-        position: static;
-        flex-basis: auto;
-    }
-}
 /* ========================================================= */
-/* CẬP NHẬT: Style cho trang Quản lý Tour (tour-dachon.html) */
+/* KHÔI PHỤC: Style cho trang Quản lý Tour (tour-dachon.html) */
 /* ========================================================= */
 
 .tour-management-page h2 {
@@ -1415,13 +1110,13 @@ h1 {
     padding: 20px 0;
 }
 
-/* 2. Thẻ tour riêng lẻ - ĐÃ CẬP NHẬT để sắp xếp nội dung dọc */
+/* 2. Thẻ tour riêng lẻ - LAYOUT 4 CỘT */
 .tour-item {
     /* Tính toán chiều rộng cho 4 cột (25%) trừ đi khoảng cách (gap) */
     flex-basis: calc(25% - 15px); 
     
     display: flex;
-    flex-direction: column; /* Sắp xếp ảnh, chi tiết, hành động theo cột dọc */
+    flex-direction: column;
     
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -1451,7 +1146,7 @@ h1 {
 /* Style cho chi tiết tour */
 .tour-item .tour-details {
     padding: 15px;
-    flex-grow: 1; /* Cho phép phần chi tiết mở rộng */
+    flex-grow: 1;
 }
 .tour-item h3 {
     font-size: 1.1em;
@@ -1476,20 +1171,20 @@ h1 {
     padding: 5px 0;
     text-align: right;
     font-size: 0.9em;
-    display: inline-block; /* Quan trọng để căn chỉnh tốt hơn */
+    display: inline-block;
 }
 
 .tour-item .status-pending {
-    color: orange; /* Chờ thanh toán */
+    color: orange;
 }
 .tour-item .status-confirmed {
-    color: var(--primary-color); /* Đã xác nhận */
+    color: var(--primary-color);
 }
 .tour-item .status-completed {
-    color: #28a745; /* Xanh lá cây */
+    color: #28a745;
 }
 .tour-item .status-cancelled {
-    color: var(--error-color); /* Đỏ */
+    color: var(--error-color);
 }
 
 /* 3. Style cho khu vực nút hành động - CÂN BẰNG NÚT */
@@ -1497,27 +1192,25 @@ h1 {
     padding: 15px;
     border-top: 1px solid #eee;
     
-    /* Áp dụng Flexbox cột dọc để cân bằng các nút */
     display: flex;
     flex-direction: column; 
-    align-items: stretch; /* Đảm bảo các mục con kéo dài hết chiều rộng */
-    gap: 10px; /* Khoảng cách đều giữa giá và các nút */
+    align-items: stretch;
+    gap: 10px;
 }
 
 /* Vị trí và style cho Giá tiền */
 .tour-item .tour-actions .tour-price {
     font-size: 1.3em;
     font-weight: bold;
-    color: #ff0000; /* Màu đỏ nổi bật cho giá */
+    color: #ff0000;
     text-align: right;
-    margin-bottom: 5px; /* Khoảng cách dưới giá trước các nút */
+    margin-bottom: 5px;
 }
 
 
 /* 4. Điều chỉnh style chung cho các nút trong khu vực hành động */
 .tour-item .tour-actions a,
 .tour-item .tour-actions button {
-    /* QUAN TRỌNG: Đảm bảo các nút chiếm hết chiều rộng */
     width: 100%; 
     text-align: center;
     padding: 10px 15px; 
@@ -1527,7 +1220,7 @@ h1 {
     box-sizing: border-box;
     text-decoration: none;
     transition: background-color 0.2s, transform 0.2s;
-    border: 1px solid transparent; /* Border mặc định để đồng nhất */
+    border: 1px solid transparent;
 }
 
 /* Style cho nút Primary (Thanh toán ngay, Xem chi tiết, Đặt lại tour) */
@@ -1563,22 +1256,327 @@ h1 {
     transform: translateY(-1px);
 }
 
-/* Media Queries cho trang quản lý tour (Giữ nguyên logic responsive) */
+/* Modal cho trang Quản lý Tour */
+#tour-dachon-modal, .modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-btn { 
+    color: #aaa;
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+
+/* ==================================== */
+/* MEDIA QUERIES (RESPONSIVE) */
+/* ==================================== */
 @media (max-width: 1100px) {
+    .tour-cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
     .tour-item {
-        flex-basis: calc(33.333% - 13.333px); /* 3 tour/hàng */
+        flex-basis: calc(33.333% - 13.333px);
     }
 }
+
+@media (max-width: 992px) {
+    .tour-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Contact page - Chuyển sang 1 cột */
+    .contact-grid-container {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    .contact-image-wrapper {
+        height: 350px;
+    }
+    
+    .checkout-page-container {
+        grid-template-columns: 1fr;
+    }
+    .order-summary {
+        order: 1;
+    }
+    .checkout-form {
+        order: 2;
+    }
+    .services-grid, .cta-content-wrap {
+        grid-template-columns: 1fr;
+    }
+    .cta-right-content {
+        padding-top: 20px;
+    }
+    .footer-content {
+        grid-template-columns: 1fr 1fr 1fr 1fr; 
+    }
+    .tour-item {
+        flex-basis: calc(50% - 10px);
+    }
+}
+
 @media (max-width: 768px) {
+    .header-top {
+        flex-wrap: wrap;
+        justify-content: space-between; 
+    }
+    
+    .main-nav {
+        order: 3;
+        width: 100%;
+        margin-top: 10px;
+        display: block; 
+        text-align: center;
+    }
+    .main-nav ul {
+        flex-direction: column; 
+        align-items: center;
+    }
+    .main-nav ul li a {
+        padding: 5px 15px; 
+    }
+    
+    .header-contact {
+        order: 2;
+        margin-left: auto; 
+        margin-right: 15px;
+    }
+    .header-actions {
+        order: 3;
+    }
+
+    .header-hero {
+        height: 350px;
+    }
+
+    .hero-content {
+        justify-content: flex-start; 
+        padding-top: 50px; 
+    }
+    .hero-content h1 {
+        font-size: 32px;
+        margin-bottom: 5px;
+    }
+    .hero-content p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .hero-search-form {
+        flex-direction: column;
+        width: 90%;
+        max-width: 400px;
+        padding: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        margin-top: -20px;
+    }
+    .search-input-group {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #eee; 
+    }
+    .search-input-group label {
+        font-size: 11px;
+    }
+    .search-input-group input {
+        width: 100%;
+        padding: 6px 0;
+        font-size: 15px;
+    }
+    .hero-search-form button {
+        margin: 10px 0 0;
+        width: 100%;
+    }
+
+    .service-right-images, .cta-left-image {
+        display: none; 
+    }
+    .location-cards-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        max-width: 90%;
+    }
+
+    .tour-cards-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .tour-header-banner h2 {
+        font-size: 30px;
+    }
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
     .tour-item {
-        flex-basis: calc(50% - 10px); /* 2 tour/hàng */
+        flex-basis: calc(50% - 10px);
     }
 }
+
 @media (max-width: 576px) {
+    .header-top {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .logo {
+        font-size: 18px;
+    }
+    
+    .header-contact, .header-actions {
+        order: 2;
+        width: 50%;
+        justify-content: center;
+        margin: 5px 0;
+    }
+
+    .header-hero {
+        height: 250px;
+    }
+    .hero-content h1 {
+        font-size: 30px;
+    }
+    .hero-content p {
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .tour-cards-grid {
+        grid-template-columns: 1fr; 
+    }
+    .tour-card h3 {
+        min-height: auto;
+    }
+    
+    .location-cards-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .auth-container {
+        padding: 20px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr; 
+    }
     .tour-item {
-        flex-basis: 100%; /* 1 tour/hàng */
+        flex-basis: 100%;
     }
     .tour-item .tour-image {
         height: 200px; 
     }
+}
+.tour-search-filter {
+    background-color: #f7f7f7; /* Màu nền nhẹ */
+    padding: 25px;
+    margin: 30px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Thanh tìm kiếm (Hàng trên) */
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Ô nhập liệu tìm kiếm */
+.search-bar input[type="text"] {
+    flex-grow: 1; 
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: #ff9900; 
+    box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.15);
+    outline: none;
+}
+
+/* Nút Tìm kiếm */
+.search-bar button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px; 
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #ff9900; 
+    color: white;
+    white-space: nowrap; 
+    transition: background-color 0.3s, transform 0.2s;
+}
+.search-bar button:hover {
+    background-color: #e68a00;
+    transform: translateY(-1px);
+}
+.search-bar button i {
+    margin-right: 5px;
+}
+
+/* Các tùy chọn lọc (Hàng dưới) */
+.filter-options {
+    display: flex;
+    gap: 15px;
+    align-items: center; /* Đảm bảo căn giữa theo chiều dọc */
+    margin: 0; /* Loại bỏ margin bên ngoài có thể gây lỗi */
+    padding: 0;
+}
+
+/* Thiết lập chiều cao và padding nhất quán cho SELECT */
+.filter-options select {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    background-color: white;
+    font-size: 15px;
+    cursor: pointer;
+    flex-grow: 1; 
+    min-width: 150px; 
+    
+    /* KHẮC PHỤC CHÍNH: Thiết lập chiều cao cụ thể và line-height */
+    height: 44px; 
+    line-height: 24px; /* Giúp căn chỉnh văn bản bên trong */
+    margin: 0; /* Loại bỏ margin mặc định của trình duyệt */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng chiều cao tổng thể */
+}
+
+/* Nút Lọc */
+.btn-filter {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #333; 
+    color: white;
+    white-space: nowrap;
+    
+    /* KHẮC PHỤC CHÍNH: Đảm bảo chiều cao chính xác */
+    height: 44px; /* Chiều cao cố định đồng bộ */
+    display: flex;
+    align-items: center; /* Căn giữa icon và chữ */
+    box-sizing: border-box; 
 }

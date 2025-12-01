@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     // ----------------------------------------------
-    // PHẦN 1: QUẢN LÝ TRẠNG THÁI ĐĂNG NHẬP & HEADER
+    // PHẦN 1: QUẢN LÝ TRẠNG THÁI ĐĂNG NHẬP & HEADER (GIỮ NGUYÊN)
     // ----------------------------------------------
 
     function checkLoginStatus() {
@@ -76,32 +76,61 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ----------------------------------------------
-    // PHẦN 2: LOGIC FORM LIÊN HỆ
+    // PHẦN 2: LOGIC FORM LIÊN HỆ (ĐÃ CẬP NHẬT: LƯU VÀO LOCALSTORAGE)
     // ----------------------------------------------
     
     const contactForm = document.getElementById('contact-form');
-    const contactMessage = document.getElementById('contact-message');
+    // ID của khu vực thông báo trạng thái trên trang lienhe.html là 'contact-message'
+    const statusMessage = document.getElementById('contact-message'); 
 
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Trong môi trường thực tế, bạn sẽ gửi dữ liệu này đến server
-            // Bắt đầu hiển thị trạng thái đang xử lý (tùy chọn)
-            contactMessage.textContent = 'Đang gửi...';
-            contactMessage.style.color = 'gray';
 
-            // Giả lập xử lý và gửi thành công sau 1 giây
+            // Lấy dữ liệu từ các ID input trong form lienhe.html
+            const name = document.getElementById('name')?.value.trim();
+            const email = document.getElementById('email')?.value.trim();
+            const phone = document.getElementById('phone')?.value.trim();
+            const message = document.getElementById('message')?.value.trim();
+            
+            // Kiểm tra tính hợp lệ cơ bản
+            if (!name || !email || !phone || !message) {
+                if (statusMessage) {
+                    statusMessage.textContent = 'Vui lòng điền đầy đủ Họ tên, Email, Số điện thoại và Nội dung.';
+                    statusMessage.style.color = 'red';
+                }
+                return;
+            }
+
+            // Tạo đối tượng tin nhắn
+            const messageData = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                phone: phone,
+                message: message,
+                date: new Date().toLocaleString('vi-VN')
+            };
+
+            // Lấy tin nhắn hiện có và thêm tin nhắn mới
+            let contactMessages = JSON.parse(localStorage.getItem('contactMessages')) || [];
+            contactMessages.push(messageData);
+
+            // Lưu vào LocalStorage
+            localStorage.setItem('contactMessages', JSON.stringify(contactMessages));
+
+            // Thông báo thành công và làm sạch form
+            if (statusMessage) {
+                statusMessage.textContent = '✅ Tin nhắn của bạn đã được gửi thành công. Cảm ơn bạn đã đóng góp!';
+                statusMessage.style.color = 'green';
+            }
+            
+            contactForm.reset();
+
+            // Xóa thông báo sau 5 giây
             setTimeout(() => {
-                contactMessage.textContent = 'Gửi thành công! Chúng tôi sẽ liên hệ lại với bạn sớm nhất.';
-                contactMessage.style.color = 'green';
-                contactForm.reset();
-                
-                // Xóa thông báo sau 5 giây
-                setTimeout(() => {
-                    contactMessage.textContent = '';
-                }, 5000);
-            }, 1000); // 1000ms delay
+                if (statusMessage) statusMessage.textContent = '';
+            }, 5000);
         });
     }
 

@@ -70,8 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- Lọc 2: Theo Địa điểm (Dropdown - Dựa trên data-location) ---
             if (isVisible && selectedDestination) {
-                // Kiểm tra nếu địa điểm của tour (cardLocation) có chứa giá trị đã chọn
-                if (!cardLocation.includes(selectedDestination)) { 
+                // KIỂM TRA ĐỊA ĐIỂM ĐÃ SỬA: Kiểm tra nếu địa điểm của tour (cardLocation) CÓ CHỨA giá trị đã chọn
+                // Nếu selectedDestination là "all" (hoặc rỗng) thì không lọc.
+                // Nếu không, cardLocation phải chứa (includes) giá trị đã chọn.
+                if (selectedDestination !== 'all' && !cardLocation.includes(selectedDestination)) { 
                     isVisible = false;
                 }
             }
@@ -145,7 +147,53 @@ document.addEventListener('DOMContentLoaded', () => {
     // IV. KHỞI CHẠY TẤT CẢ CÁC CHỨC NĂNG
     // =========================================================================
 
+    function setupDetailAction() {
+        const detailButtons = document.querySelectorAll('.btn-detail');
+        // ✅ GIỮ NGUYÊN ID DOM: 'tour-dachon-modal' và 'tour-dachon-content'
+        const modal = document.getElementById('tour-dachon-modal'); 
+        const modalContent = document.getElementById('tour-dachon-content'); 
+        const closeBtn = document.getElementById('close-dachon');
+
+        detailButtons.forEach(button => {
+            button.addEventListener('click', async function() {
+                const tourId = this.dataset.tourId;
+
+                try {
+                    // API endpoint (đang giả lập, giữ nguyên)
+                    const response = await fetch(`https://web-du-lich-nhom5-2.onrender.com/api/tours/${tourId}`);
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        modalContent.innerHTML = `
+                            <h2>${data.title}</h2>
+                            <p><strong>Mã tour:</strong> ${data.id}</p>
+                            <p><strong>Giá:</strong> ${data.price} VND</p>
+                        `;
+                        modal.style.display = 'block';
+                    } else {
+                        alert(data.message || 'Không tìm thấy tour.');
+                    }
+                } catch (error) {
+                    console.error('Lỗi khi lấy thông tin tour:', error);
+                    alert('Lỗi kết nối server.');
+                }
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    
+    }
     setupBookingAction();
     setupFilterListeners();
-    filterTours(); // Chạy lọc ban đầu để hiển thị đúng số lượng tour và áp dụng bộ lọc ban đầu
+    setupDetailAction();
+    filterTours();
+
 });
